@@ -3,8 +3,9 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes');
+var express = require('express');
+var routes = require('./routes');
+var partials = require('express-partials');
 
 var app = module.exports = express.createServer();
 
@@ -12,7 +13,8 @@ var app = module.exports = express.createServer();
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
+  app.set('view engine', 'ejs');
+  app.use(partials());
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
