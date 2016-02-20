@@ -1,0 +1,98 @@
+{
+    "__comments" : {
+        "what's this?"        : "__comments仅用来说明json文件中得数据定义",
+
+        "logLevel"            : "调试日志打印级别：TRACE,DEBUG,INFO,WARNING,ERROR,FATAL",
+        "enableCaptcha"       : "启用验证码检查： true,false",
+
+        "cloudURL"            : "云平台入口URL",
+        "sessionSecret"       : "用于session数据的加密秘钥",
+
+        "cloudDBName"         : "云平台数据库名称",
+        "customerDBPrefix"    : "商户数据名称前缀，通常商户数据库名称为：<本前缀>_<商户名称>",
+        "db.connectionLimit"  : "数据库连接池中得最大连接数目",
+        "db.host"             : "数据库主机域名或者IP地址",
+        "db.user"             : "数据库登录用户名称",
+        "db.password"         : "数据库登录密码",
+        "db.logSql"           : "",
+
+        "redis.host"          : "Redis主机名称",
+        "redis.port"          : "Redis端口号",
+        "redis.password"      : "Redis访问密码",
+        "redis.dbNum"         : "Redis DB number, 0 for default",
+
+        "mq.offlineTaskPrefix": "离线任务消息队列前缀名称，消息队列都会以执行的unix 用户名字为后缀",
+        "mq.dbConnectionLimit": "Worker的数据库连接数",
+        "indexNewsCounts"     : "首页显示的新闻窗体的新闻条数",
+        "security.maxLoginFailCount": "最大登录失败次数",
+        "security.loginFailBanTime" : "连续登录失败后，严禁再次登录时长"
+    },
+
+    "isErpMsgCheckStrict"     : true,
+    "erpApiVersion"           : "1.0",
+
+    "logLevel"                : "TRACE",
+
+    "enableCaptcha"           : false,
+
+    "cloudURL"                : "http://www.romens.cn",
+
+    "cloudDBName"             : "GrabCloudDB",
+
+    "customerDBPrefix"        : "GrabCustomerDB",
+
+    "sessionSecret"           : "May had a little lamb.",
+
+    "sessionTTL"              : 3600,
+
+    "goodsTopBuyDays"         : 30,
+
+    "cache": {
+        "enabled"             : false,
+        "TTL": {
+              "LONG"          : 86400,
+              "MID"           : 3600,
+              "SHORT"         : 300,
+              "FLASH"         : 60,
+              "24H"           : 86400,
+              "12H"           : 43200,
+              "6H"            : 21600,
+              "2H"            : 7200,
+              "60M"           : 3600,
+              "30M"           : 1800,
+              "15M"           : 900,
+              "5M"            : 300,
+              "3M"            : 180,
+              "60S"           : 60
+        }
+    },
+
+    "db": {
+        "connectionLimit"     : 10,
+        "host"                : "cd",
+        "user"                : "root",
+        "password"            : "romens@2015",
+        "logSql"		      : true
+    },
+
+    "redis": {
+        "host"                : "cd.romens.cn",
+        "port"                : "6379",
+        "dbNum"               : 7
+    },
+    "mq": {
+        "OfflineTaskPrefix"   : "OfflineTask",
+        "dbConnectionLimit"   : 1
+    },
+    "indexNewsCounts"         : 5,
+    "sms":{
+        "sendUrl"               : "im.yiyao365.cn",
+        "path"                  : "/SmsApi?",
+        "ver"                   :"temp",
+        "appkey"                :"scc"
+    },
+    "security": {
+        "maxLoginFailCount"   : 3,
+        "loginFailBanTime"    : 3600
+    }
+}
