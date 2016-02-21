@@ -3,9 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "cheerio": "^0.20.0",
     "ejs": "=2.3.3",
+    "eventproxy": "^0.3.4",
     "express": "2.5.8",
-    "express-partials": "*"
+    "express-partials": "*",
+    "superagent": "^1.7.2",
+    "url": "^0.11.0"
   },
   "engines": {
     "node": "0.12.10",
