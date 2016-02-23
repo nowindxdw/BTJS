@@ -10,6 +10,7 @@ var partials = require('express-partials');
 var app = module.exports = express.createServer();
 
 // Configuration
+global.__base = __dirname;
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
@@ -28,12 +29,30 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.use(express.errorHandler());
 });
+//init DB
+var dbConfig ={
+  "connectionLimit"     : 10,
+      "host"            : "127.0.0.1",
+      "user"            : "root",
+      "password"        : "100821",
+      "logSql"		    : true
+};
+var mysql = require('mysql');
+var pool  = mysql.createPool(dbConfig);
+global.__mysql = pool;
+//init logger
+var logger = require(__dirname+'/public/logService');
+global.__logService = logger;
 
 // Routes
 app.get('/', routes.index);
 var track = require('./routes/track');
 app.get('/track',track.index );
+var tracklist = require('./routes/tracklist');
+app.get('/track/list',tracklist.index );
+
 //app.get('/shopping', routes.shopping);
+
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });

@@ -17,6 +17,9 @@ CREATE TABLE TrackInfo(
 	/* 启用标志 */
 	enable				BOOL					    DEFAULT TRUE,
 
+	/* 显示备注 */
+	remark				VARCHAR(50)					DEFAULT "",
+
 	/* 更新时间 */
     updatedOn           VARCHAR(64)                 DEFAULT NULL,
 	/* 创建时间 */
