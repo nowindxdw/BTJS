@@ -1,31 +1,61 @@
 
 <!doctype html>
-<!--Conditionals for IE8-9 Support-->
-<!--[if IE]><html lang="en" class="ie"><![endif]-->
 <html>
 <head>
-
+    <title>Dawei Home</title>
+    <link href="//localhost:9000/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//localhost:9000/js/jquery-1.12.1.min.js"></script>
+    <script src="//localhost:9000/js/bootstrap.min.js"></script>
 </head>
 <body>
 <!--Off-Canvas-->
-<div style="position:relative;height:100%;background: #ececec;">
+
     <!--Header Toolbar-->
-    <div class="header-toolbar tool-head">
-        <div class="container">
-            <div class="cont-info pull-left">
 
-                <h1><%=title%></h1>
-                layout of dawei home！
-                <%if(data){%>
-                <%=JSON.stringify(data)%>
-                <%}%>
-            </div>
+    <p>欢迎来到DAWEI HOME</p>
+    <ul class="nav nav-pills">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/track/list">追番</a></li>
+        <li><a href="#">购物</a></li>
+        <li><a href="#">读书</a></li>
+        <li><a href="#">游戏</a></li>
+        <li><a href="#">视频</a></li>
+    </ul>
 
-        </div>
-    </div>
 
-    <div style="position: absolute;left:0;bottom:0;width: 100%">
-    </div>
-</div>
+<table class="table table-hover">
+<caption><h2><%=title%></h2></caption>
+    <%if(data!="undefined"){%>
+<thead>
+<tr>
+    <th></th>
+    <th>内容</th>
+    <th>链接</th>
+    <th></th>
+</tr>
+</thead>
+
+<%var details = data.details%>
+<tbody>
+
+<tr>
+    <td></td>
+    <td><%=data.trackName%><%=data.remark%></td>
+    <td><a href="<%=data.trackUrl%>" target="_blank"><%=data.trackUrl%></a></td>
+</tr>
+<% for (var i in details){%>
+<% var item = details[i]%>
+<tr>
+    <td><%=item.listOrder%></td>
+    <td><%=item.trackResult%></td>
+    <td><a href="<%=item.resultUrl%>" target="_blank"><%=item.resultUrl%></a></td>
+    <td><button class="btn-info">阅</button></td>
+</tr>
+<%}%>
+
+</tbody>
+    <%}%>
+</table>
+
 </body>
 </html>

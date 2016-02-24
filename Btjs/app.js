@@ -6,6 +6,9 @@
 var express = require('express');
 var routes = require('./routes');
 var partials = require('express-partials');
+var path =require('path');
+var serveStatic = require('serve-static');
+
 
 var app = module.exports = express.createServer();
 
@@ -19,7 +22,8 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(__dirname + '/public'))
+  app.use(serveStatic(__dirname + '/public'))
 });
 
 app.configure('development', function(){
@@ -53,6 +57,6 @@ app.get('/track/list',tracklist.index );
 
 //app.get('/shopping', routes.shopping);
 
-app.listen(3000, function(){
-  console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d", process.env.PORT || 3000);
 });

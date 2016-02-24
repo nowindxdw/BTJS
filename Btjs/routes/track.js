@@ -33,7 +33,7 @@ exports.index = function(req, res){
                     trackId:1,
                     trackResult:title,
                     resultUrl:href,
-                    listOrder:num
+                    listOrder:num,
                 };
                 logger.debug(JSON.stringify(insertInfo));
                 restoreIntoDB(dbName,insertInfo,function(err,result){
@@ -46,7 +46,8 @@ exports.index = function(req, res){
         });
   //res.redirect('','/track/list');
   res.render('', { title: '正在追的各种：',
-                   layout: 'layout'})
+                   layout: 'layout',
+                   data:{}})
 };
 
 

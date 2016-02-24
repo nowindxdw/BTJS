@@ -17,7 +17,7 @@ exports.index = function(req, res){
             selectTracklistFromDB(dbName,trackInfo.id,function(err,trackDetails){
                 trackInfo.details = trackDetails;
                 res.render('', {
-                    title: '正在追的各种：',
+                    title: '番剧『'+trackInfo.trackName+'』更新详情：',
                     layout: 'layout',
                     data :trackInfo
                 })

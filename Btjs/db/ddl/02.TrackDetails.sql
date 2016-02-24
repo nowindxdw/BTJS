@@ -20,11 +20,17 @@ CREATE TABLE TrackDetails(
 	/* order by */
 	listOrder		    BIGINT					    DEFAULT NULL,
 
+	/* 标记 */
+	remark              VARCHAR(50)                 DEFAULT "UNREAD",
+
 	/* 更新时间 */
 	updatedOn           VARCHAR(64)                 DEFAULT NULL,
 
 	/* 创建时间 */
-	createdOn           TIMESTAMP                   DEFAULT CURRENT_TIMESTAMP
+	createdOn           TIMESTAMP                   DEFAULT CURRENT_TIMESTAMP,
+
+	UNIQUE KEY (trackId, listOrder)
+
 );
 
 
