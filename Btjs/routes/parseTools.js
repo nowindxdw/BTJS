@@ -13,7 +13,6 @@ var underscore = require("underscore");
      * @returns {string}
      */
     function parseUpdateInfo(data){
-    logger.enter();
     var result = "";
     if(underscore.isEmpty(data)) {
         return result;
@@ -39,7 +38,6 @@ var underscore = require("underscore");
      * @returns {{keys: string, values: string}}
      */
     function parseInsertInfo(data){
-        logger.enter();
         var result = {keys:"",values:""};
         for(var key in data){
             if(data[key]) {
@@ -63,7 +61,6 @@ var underscore = require("underscore");
      * @returns {{keyStr: string, valueStr: string, updateStr: string}}
      */
     function parseInsertOnDuplicateInfo (data){
-        logger.enter();
         var result = {
             keyStr:"",
             valueStr:"",

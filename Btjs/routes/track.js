@@ -39,7 +39,6 @@ exports.index = function(req, res){
                 restoreIntoDB(dbName,insertInfo,function(err,result){
                     logger.trace("err="+err);
                     logger.debug("result="+result);
-
                 })
 
             });
@@ -54,7 +53,6 @@ exports.index = function(req, res){
 function restoreIntoDB(dbName,insertInfo,callback){
     var data = parseTools.parseInsertOnDuplicateInfo(insertInfo);
     var sql=sprintf("INSERT INTO %s.TrackDetails (%s) VALUES (%s) ON DUPLICATE KEY UPDATE %s;",dbName,data.keyStr,data.valueStr,data.updateStr);
-    logger.sql(sql);
     /* execute sql */
     __mysql.query(sql, function(err, results){
         if (err) {

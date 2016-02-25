@@ -45,9 +45,8 @@ var mysql = require('mysql');
 var pool  = mysql.createPool(dbConfig);
 global.__mysql = pool;
 //init logger
-var logger = require(__dirname+'/public/logService');
+var logger = require(__dirname+'/modules/logService');
 global.__logService = logger;
-
 // Routes
 app.get('/', routes.index);
 var track = require('./routes/track');
