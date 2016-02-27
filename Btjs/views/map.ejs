@@ -1,0 +1,44 @@
+
+<!doctype html>
+<!--Conditionals for IE8-9 Support-->
+<!--[if IE]><html lang="en" class="ie"><![endif]-->
+<html>
+<% include header.ejs %>
+<style type="text/css">
+    body, html {width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+    #allmap{width:100%;height:500px;}
+    p{margin-left:5px; font-size:14px;}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=299c2196c6beebca94cc5fde79fe94ce"></script>
+<body style="padding-top: 0px">
+<div id="allmap"></div>
+</body>
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");    // 创建Map实例
+    map.centerAndZoom(new BMap.Point(104.114103, 30.612035), 17);  // 初始化地图,设置中心点坐标和地图级别
+    map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+    map.setCurrentCity("成都");          // 设置地图显示的城市 此项是必须设置的
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+    var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，添加比例尺
+    var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+    var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}); //右上角，仅包含平移和缩放按钮
+    /*缩放控件type有四种类型:
+     BMAP_NAVIGATION_CONTROL_SMALL：仅包含平移和缩放按钮；BMAP_NAVIGATION_CONTROL_PAN:仅包含平移按钮；BMAP_NAVIGATION_CONTROL_ZOOM：仅包含缩放按钮*/
+
+    //添加控件和比例尺
+
+    map.addControl(top_left_control);
+    map.addControl(top_left_navigation);
+    map.addControl(top_right_navigation);
+
+    var marker = new BMap.Marker(new BMap.Point(104.114103, 30.610700)); // 创建点
+    marker.addEventListener("click",attribute);
+    map.addOverlay(marker);    //增加点
+
+    function attribute(){
+        var p = marker.getPosition();  //获取marker的位置
+        alert("dawei home的位置");
+    }
+</script>
+</html>

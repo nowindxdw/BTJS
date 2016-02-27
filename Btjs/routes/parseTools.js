@@ -55,7 +55,7 @@ var underscore = require("underscore");
      *
      *
      * var data = parseInsertOnDuplicateInfo(IOD_Info);
-     * var SQL = "INSERT INTO %s.TableName (%s) VALUES (%s) ON DUPLICATE KEY UPDATE %s;";
+     * var SQL = "INSERT INTO %s.TableName (%s) VALUES ? ON DUPLICATE KEY UPDATE %s;";
      * var sql = sprintf(SQL,DBName,data.keyStr,data.valueStr,data.updateStr);
      * @param data
      * @returns {{keyStr: string, valueStr: string, updateStr: string}}

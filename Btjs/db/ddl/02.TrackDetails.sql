@@ -8,14 +8,15 @@ CREATE TABLE TrackDetails(
 	/* id */
 	id 					BIGINT 		                AUTO_INCREMENT PRIMARY KEY,
 
-	/*id for track obj */
-	trackId             BIGINT                      DEFAULT NULL,
+	/*trackInfo.url */
+	trackUrl            VARCHAR(200)                DEFAULT NULL,
 
 	/*result for track obj */
-	trackResult         VARCHAR(500)                DEFAULT NULL,
+	trackResult         VARCHAR(200)                DEFAULT NULL,
+
 
     /*url for track result */
-    resultUrl           VARCHAR(500)                DEFAULT NULL,
+    resultUrl           VARCHAR(200)                DEFAULT NULL,
 
 	/* order by */
 	listOrder		    BIGINT					    DEFAULT NULL,
@@ -29,7 +30,7 @@ CREATE TABLE TrackDetails(
 	/* 创建时间 */
 	createdOn           TIMESTAMP                   DEFAULT CURRENT_TIMESTAMP,
 
-	UNIQUE KEY (trackId, listOrder)
+	UNIQUE KEY (resultUrl, listOrder)
 
 );
 

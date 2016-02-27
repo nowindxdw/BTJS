@@ -7,28 +7,42 @@ var parseTools = require("./parseTools");
 
 
 exports.index = function(req, res){
-
+    var logger = global.__logService;
     //指定关注的track_list
     var dbName = "dawei_localhost";
     selectTrackInfoFromDB(dbName,function(err,trackInfos){
-        underscore.map(trackInfos,function(trackInfo){
-            selectTracklistFromDB(dbName,trackInfo.id,function(err,trackDetails){
-                trackInfo.details = trackDetails;
-                res.render('', {
-                    title: '番剧『'+trackInfo.trackName+'』更新详情：',
-                    layout: 'index',
-                    data :trackInfo
+        logger.debug(JSON.stringify(trackInfos));
+        async.mapSeries(
+            trackInfos,
+            function(trackInfo,mapcallback){
+                selectTracklistFromDB(dbName,trackInfo.trackUrl,function(err,trackDetails){
+                    logger.debug(JSON.stringify(trackDetails));
+                    trackInfo.details = trackDetails;
+                    mapcallback();
                 })
-            })
-        })
+            },
+            function(errs,resList){
+                if(errs){
+                    logger.error(errs);
+                } else{
+                    res.render('', {
+                        title: '番剧更新详情',
+                        layout: 'index',
+                        data :trackInfos
+                    })
+                }
+            }
+        );
     });
 };
 
 
 
-function selectTracklistFromDB(dbName,trackId,callback){
-    var sql=sprintf("SELECT * FROM %s.TrackDetails WHERE trackId = %d ORDER BY listOrder DESC;",dbName,trackId);
+function selectTracklistFromDB(dbName,trackUrl,callback){
+    var logger = global.__logService;
+    var sql=sprintf("SELECT * FROM %s.TrackDetails WHERE trackUrl = '%s' ORDER BY listOrder DESC;",dbName,trackUrl);
     /* execute sql */
+    logger.sql(sql);
     __mysql.query(sql, function(err, results){
         if (err) {
             logger.error("error : " + err + ", " + err.stack);
@@ -40,8 +54,10 @@ function selectTracklistFromDB(dbName,trackId,callback){
 }
 
 function selectTrackInfoFromDB(dbName,callback){
+    var logger = global.__logService;
     var sql=sprintf("SELECT * FROM %s.TrackInfo;",dbName);
     /* execute sql */
+    logger.sql(sql);
     __mysql.query(sql, function(err, results){
         if (err) {
             logger.error("error : " + err + ", " + err.stack);

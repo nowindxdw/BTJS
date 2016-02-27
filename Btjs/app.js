@@ -22,8 +22,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
-  app.use(express.static(__dirname + '/public'))
-  app.use(serveStatic(__dirname + '/public'))
+  app.use(express.static(__dirname + '/public'));
 });
 
 app.configure('development', function(){
@@ -53,7 +52,10 @@ var track = require('./routes/track');
 app.get('/track',track.index );
 var tracklist = require('./routes/tracklist');
 app.get('/track/list',tracklist.index );
-
+var map = require('./routes/map');
+app.get('/map',map.index );
+var update = require('./routes/update');
+app.get('/update',update.index );
 //app.get('/shopping', routes.shopping);
 
 app.listen(process.env.PORT || 3000, function(){
